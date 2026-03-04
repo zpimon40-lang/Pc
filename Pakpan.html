@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Anniversary Card for Mew</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000; /* พื้นหลังสีดำโทนเข้ม */
+            --card-white: #ffffff;
+            --text-black: #000000;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Mali', cursive;
+            perspective: 1500px;
+            overflow: hidden;
+        }
+
+        .card-container {
+            width: 320px;
+            height: 480px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-container.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: var(--card-white);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+        }
+
+        .front h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-black);
+        }
+
+        .front p {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: var(--text-black);
+            text-align: center;
+            margin: 0;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+        }
+
+        .back h2 {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .music-box {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transition: transform 0.3s;
+        }
+
+        .music-box:hover {
+            transform: scale(1.05);
+        }
+
+        .music-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .hint {
+            position: absolute;
+            bottom: 20px;
+            font-size: 12px;
+            color: #888;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container" id="myCard">
+        <div class="card-face front">
+            <h1>ถึง ทุกคนที่กำลังอ่าน</h1>
+            <p>
+                ก้าวต่อไปมันคือของจริงแล้วนะเพื่อน ขอให้เส้นทางใหม่ในชีวิตแต่ละคนเต็มไปด้วยความสุข
+                ถ้าเหนื่อยอย่าลืมพักผ่อนนะ ดูแลสุขภาพด้วย ใครที่มีมหาลัยแล้วก็ขอให้เจอสังคมที่ดีนะตั้งใจเรียนด้วย
+                ใครที่ยังไม่มีก็ขอให้ติดมหาลัยที่ฝันเอาไว้นะเอามาลงอวดด้วย ใครที่ยังไม่มีก็ขอให้เจอทางที่ใช่นะ
+                สุดท้ายนี้ ไม่ว่าใครจะติดไหนหรือไปเป็นอะไร ก็ขอให้ประสบความสำเร็จในทุกๆเรื่องนะ 
+            </p>
+            <div class="hint">พลิกไปอีกหน้าหน่อย </div>
+        </div>
+
+        <div class="card-face back">
+            <h2>มีไรให้ดู</h2>
+            <a href="https://youtu.be/aE8F6z_fAQQ?si=lnPB5gtN9S5uYyr_">
+                <img src="https://cdn.discordapp.com/attachments/1378734699131703449/1478638226133487666/IMG_1670.png?ex=69a920a8&is=69a7cf28&hm=a530e6e0e1be264fb84cf5c561e0890a7a1e1597b6f0f7b26fc09ac7c0eede36&" alt="Music Cover">
+                <div class="play-icon">▶</div>
+            </a>
+            <p style="margin-top: 20px; font-size: 14px; color: #888;">กดที่รูปนะ</p>
+            <div class="hint">แตะเพื่อกลับไปอ่านข้อความ</div>
+        </div>
+    </div>
+
+    <script>
+        const card = document.getElementById('myCard');
+
+        card.addEventListener('click', function(e) {
+            if (e.target.closest('.music-box')) return;
+            this.classList.toggle('flipped');
+        });
+    </script>
+
+</body>
+</html>
